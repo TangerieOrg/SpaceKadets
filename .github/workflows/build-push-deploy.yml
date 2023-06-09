@@ -7,16 +7,18 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/docker-build-push.yml
+    uses: TangerieOrg/Workflows/.github/workflows/docker-build-push.yml@main
     with:
       image_name: spacekadets
       registry_name: docker.tangerie.xyz
       ref: main
+      path: ./
     secrets: inherit
     
   deploy:
-    uses: ./.github/workflows/docker-deploy.yml
-    needs: build
+    uses: TangerieOrg/Workflows/.github/workflows/docker-deploy.yml@main
+    needs: 
+      - build
     with:
       image_name: spacekadets
       registry_name: docker.tangerie.xyz
